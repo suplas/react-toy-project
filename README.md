@@ -9,8 +9,9 @@
 
 <h2>#Language & Library</h2>
   <ul>
-    <li>node.js</li>
-    <li>React.js</li>
+    <li>Node.js</li>
+    <li>React</li>
+    <li>TypeScript</li>
     <li>Material UI</li>
   </ul>
 
@@ -24,7 +25,8 @@
     <li>Node - 16.14.2</li>
     <li>npx - 8.5.0</li>
     <li>create-react-app - 5.0.1</li>
-    <li>react - 18.2.0</li>
+    <li>React - 18.2.0</li>
+    <li>TypeScript - 4.9.3</li>
     <li>OS - macOS Ventura 13.0.1</li>
   </ul>
 
