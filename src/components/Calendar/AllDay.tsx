@@ -8,27 +8,32 @@ interface ContainerProps {
 }
 
 const Container = styled.div<ContainerProps>`
-  border: 1px solid gray;
+  border: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   &:hover {
-    background-color: gray;
+    background-color: #fff;
   }
   p {
+    width: 20px;
     padding: 5px;
-    font-weight: ${({ sameMonth }) => (sameMonth ? `700` : `300`)};
+    text-align: center;
+    font-weight: ${({ sameMonth }) => (sameMonth ? `700` : `100`)};
     ${({ sameDay }) =>
       sameDay
         ? css`
-            color: white;
-            background-color: blue;
+            color: #fff;
+            background-color: pink;
+            border-radius: 3rem;
           `
         : css``}
     ${({ clickDay }) =>
       clickDay
         ? css`
-            border: 1px solid skyblue;
+            color: #fff;
+            background-color: pink;
+            border-radius: 3rem;
           `
         : css``}
   }

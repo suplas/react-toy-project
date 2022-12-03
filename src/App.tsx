@@ -5,6 +5,11 @@ import CalendarMain from './components/Calendar/CalendarMain'
 import CalendarViewModel from './app/viewModels/CalendarViewModel'
 import styled from 'styled-components'
 
+const Wrap = styled.div`
+  background-color: #fafbfc;
+  overflow: hidden;
+`
+
 const Header = styled.div`
   position: relative;
   background-color: #fff;
@@ -16,12 +21,12 @@ const Container = styled.div`
   position: relative;
   justify-content: center;
   align-item: center;
-  padding: 20px 30px;
+  //padding: 20px 30px;
   margin: 0 auto;
 `
 
 const Footer = styled.div`
-  background-color: #fafbfc;
+  background-color: #fff;
   border-top: 1px solid #e4e8eb;
 `
 
@@ -29,7 +34,7 @@ function App() {
   let viewModel = new CalendarViewModel(CalendarService.instance)
 
   return (
-    <div className="wrap">
+    <Wrap>
       <Header>
         <p>Header</p>
       </Header>
@@ -39,7 +44,7 @@ function App() {
       <Footer>
         <p>Footer</p>
       </Footer>
-    </div>
+    </Wrap>
   )
 }
 

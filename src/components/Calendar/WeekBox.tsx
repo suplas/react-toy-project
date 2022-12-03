@@ -2,8 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 
 const Container = styled.div`
-  background-color: gray;
-  border: 1px solid black;
+  background-color: #fff;
+  border: 0;
   display: flex;
   justify-content: center;
   align-items: center;

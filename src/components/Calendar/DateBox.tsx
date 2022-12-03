@@ -55,11 +55,8 @@ const DateBox = ({ nowDate, setNowDate, clickedDate, setClickedDate }: Props) =>
         flex: 1,
         display: 'grid',
         gridTemplateColumns: 'repeat(7, 1fr)',
-        backgroundColor: 'primary.dark',
-        '&:hover': {
-          backgroundColor: 'primary.main',
-          opacity: [0.9, 0.8, 0.7],
-        },
+        backgroundColor: '#fff',
+        border: 0,
       }}
     >
       {weeks.map(week => {
@@ -78,23 +75,6 @@ const DateBox = ({ nowDate, setNowDate, clickedDate, setClickedDate }: Props) =>
         )
       })}
     </Box>
-    // <Container>
-    //   {weeks.map((week) => {
-    //     return <WeekBox key={week} weekName={week} />;
-    //   })}
-    //   {allDay.map((day: Date) => {
-    //     return (
-    //       <AllDay
-    //         key={day.getTime()}
-    //         day={day}
-    //         nowDate={nowDate}
-    //         setNowDate={setNowDate}
-    //         clickedDate={clickedDate}
-    //         setClickedDate={setClickedDate}
-    //       />
-    //     );
-    //   })}
-    // </Container>
   )
 }
 
