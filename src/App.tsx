@@ -1,12 +1,44 @@
 import React from 'react'
 import './App.css'
+import CalendarService from './app/services/CalendarService'
+import CalendarMain from './components/Calendar/CalendarMain'
+import CalendarViewModel from './app/viewModels/CalendarViewModel'
+import styled from 'styled-components'
+
+const Header = styled.div`
+  position: relative;
+  background-color: #fff;
+  z-index: 2000;
+`
+
+const Container = styled.div`
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-item: center;
+  padding: 20px 30px;
+  margin: 0 auto;
+`
+
+const Footer = styled.div`
+  background-color: #fafbfc;
+  border-top: 1px solid #e4e8eb;
+`
 
 function App() {
+  let viewModel = new CalendarViewModel(CalendarService.instance)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>12321321</p>
-      </header>
+    <div className="wrap">
+      <Header>
+        <p>Header</p>
+      </Header>
+      <Container>
+        <CalendarMain />
+      </Container>
+      <Footer>
+        <p>Footer</p>
+      </Footer>
     </div>
   )
 }

@@ -39,3 +39,7 @@
   <ul>
     <li>Restful</li>
   </ul>
+
+  <h2>#Note</h2>
+  <p>1. The calendar is being customized by referring to GitHub jdy0120's code</p>
+  <p>2. When using the calendar library, it is not easy to customize the design and functionality, so it is not used</p>
