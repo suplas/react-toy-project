@@ -13,6 +13,7 @@
     <li>React</li>
     <li>TypeScript</li>
     <li>Material UI</li>
+    <li>Styled Component</li>
   </ul>
 
 <h2>#DB</h2>
@@ -27,6 +28,7 @@
     <li>create-react-app - 5.0.1</li>
     <li>React - 18.2.0</li>
     <li>TypeScript - 4.9.3</li>
+    <li>Styled Component - 5.3.6</li>
     <li>OS - macOS Ventura 13.0.1</li>
   </ul>
 

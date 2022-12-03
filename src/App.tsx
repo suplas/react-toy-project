@@ -39,7 +39,7 @@ function App() {
         <p>Header</p>
       </Header>
       <Container>
-        <CalendarMain />
+        <CalendarMain viewModel={viewModel}/>
       </Container>
       <Footer>
         <p>Footer</p>

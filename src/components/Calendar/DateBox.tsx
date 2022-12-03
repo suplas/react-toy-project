@@ -13,9 +13,9 @@ const Container = styled.div`
 
 interface Props {
   nowDate: Date
-  setNowDate: React.Dispatch<React.SetStateAction<Date>>
+  setNowDate: any
   clickedDate: Date | undefined
-  setClickedDate: React.Dispatch<React.SetStateAction<Date | undefined>>
+  setClickedDate: any
 }
 
 const monthList = (nowDate: Date) => {

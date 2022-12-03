@@ -22,7 +22,7 @@ const BtnBox = styled.div`
 
 interface Props {
   nowDate: Date
-  setNowDate: React.Dispatch<React.SetStateAction<Date>>
+  setNowDate: any
 }
 
 const ControlDate = ({ nowDate, setNowDate }: Props) => {
