@@ -1,6 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Button } from '@mui/material'
+import { observer } from 'mobx-react'
+import CalenderViewModel from '../../app/viewModels/CalendarViewModel'
 
 const Container = styled.div`
   width: 100%;
@@ -11,31 +13,26 @@ const Container = styled.div`
 `
 
 const BtnBox = styled.div`
-    border: 0;
-    margin: 0;
-    background-color: #fff;
-
-  /* &:hover {
-    background-color: yellow;
-  } */
+  border: 0;
+  margin: 0;
+  background-color: #fff;
 `
 
-interface Props {
-  nowDate: Date
-  setNowDate: any
+type CalendarProps = {
+  viewModel: CalenderViewModel
 }
 
-const ControlDate = ({ nowDate, setNowDate }: Props) => {
+export default observer(({ viewModel }: CalendarProps) => {
   const changeYear = (change: number) => {
-    const date: Date = new Date(nowDate.getTime())
+    const date: Date = new Date(viewModel.nowDate.getTime())
     date.setFullYear(date.getFullYear() + change)
-    setNowDate(date)
+    viewModel.setNowDate(date)
   }
 
   const changeMonth = (change: number) => {
-    const date: Date = new Date(nowDate.getTime())
+    const date: Date = new Date(viewModel.nowDate.getTime())
     date.setMonth(date.getMonth() + change)
-    setNowDate(date)
+    viewModel.setNowDate(date)
   }
 
   return (
@@ -56,7 +53,7 @@ const ControlDate = ({ nowDate, setNowDate }: Props) => {
           {'<'}
         </Button>
       </BtnBox>
-      <h1>{`${nowDate.getMonth() + 1}. ${nowDate.getFullYear()}`}</h1>
+      <h1>{`${viewModel.nowDate.getMonth() + 1}. ${viewModel.nowDate.getFullYear()}`}</h1>
       <BtnBox>
         <Button
           onClick={() => {
@@ -75,6 +72,4 @@ const ControlDate = ({ nowDate, setNowDate }: Props) => {
       </BtnBox>
     </Container>
   )
-}
-
-export default ControlDate
+})

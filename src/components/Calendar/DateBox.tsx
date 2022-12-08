@@ -1,53 +1,15 @@
 import React from 'react'
-import styled from 'styled-components'
 import WeekBox from './WeekBox'
 import AllDay from './AllDay'
 import Box from '@mui/material/Box'
+import { observer } from 'mobx-react'
+import CalenderViewModel from '../../app/viewModels/CalendarViewModel'
 
-const Container = styled.div`
-  width: 100%;
-  flex: 1;
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-`
-
-interface Props {
-  nowDate: Date
-  setNowDate: any
-  clickedDate: Date | undefined
-  setClickedDate: any
+type CalendarProps = {
+  viewModel: CalenderViewModel
 }
 
-const monthList = (nowDate: Date) => {
-  const nowYear = nowDate.getFullYear()
-  const nowMonth = nowDate.getMonth()
-
-  const dayOneWeek = new Date(nowYear, nowMonth, 1).getDay()
-  const dayLastWeek = new Date(nowYear, nowMonth + 1, 0).getDay()
-
-  const result: Date[] = []
-  const prevMonthEnd = new Date(nowYear, nowMonth, 0).getDate()
-  const nowMonthEnd = new Date(nowYear, nowMonth + 1, 0).getDate()
-
-  for (let i = dayOneWeek - 1; i >= 0; i--) {
-    result.push(new Date(nowYear, nowMonth - 1, prevMonthEnd - i))
-  }
-
-  for (let i = 1; i <= nowMonthEnd; i++) {
-    result.push(new Date(nowYear, nowMonth, i))
-  }
-
-  for (let i = 1; i < 7 - dayLastWeek; i++) {
-    result.push(new Date(nowYear, nowMonth + 1, i))
-  }
-
-  return result
-}
-
-const DateBox = ({ nowDate, setNowDate, clickedDate, setClickedDate }: Props) => {
-  const allDay: Date[] = monthList(nowDate)
-  const weeks = ['일', '월', '화', '수', '목', '금', '토']
-
+export default observer(({ viewModel }: CalendarProps) => {
   return (
     <Box
       sx={{
@@ -59,23 +21,12 @@ const DateBox = ({ nowDate, setNowDate, clickedDate, setClickedDate }: Props) =>
         border: 0,
       }}
     >
-      {weeks.map(week => {
+      {viewModel.weeks.map(week => {
         return <WeekBox key={week} weekName={week} />
       })}
-      {allDay.map((day: Date) => {
-        return (
-          <AllDay
-            key={day.getTime()}
-            day={day}
-            nowDate={nowDate}
-            setNowDate={setNowDate}
-            clickedDate={clickedDate}
-            setClickedDate={setClickedDate}
-          />
-        )
+      {viewModel.allDay.map((day: Date) => {
+        return <AllDay key={day.getTime()} viewModel={viewModel} day={day} />
       })}
     </Box>
   )
-}
-
-export default DateBox
+})

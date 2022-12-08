@@ -17,21 +17,10 @@ type CalendarProps = {
 }
 
 export default observer(({ viewModel }: CalendarProps) => {
-  const nowDate = viewModel.nowDate
-  const clickedDate = viewModel.clickedDate
-
-  const setNowDate = (date: Date) => {
-    viewModel.setNowDate(date)
-  }
-
-  const setClickedDate = (date: Date) => {
-    viewModel.setclickedDate(date)
-  }
-
   return (
     <Container>
-      <ControlDate nowDate={nowDate} setNowDate={setNowDate} />
-      <DateBox nowDate={nowDate} setNowDate={setNowDate} clickedDate={clickedDate} setClickedDate={setClickedDate} />
+      <ControlDate viewModel={viewModel} />
+      <DateBox viewModel={viewModel} />
     </Container>
   )
 })

@@ -1,5 +1,6 @@
-import React from 'react'
 import styled, { css } from 'styled-components'
+import { observer } from 'mobx-react'
+import CalenderViewModel from '../../app/viewModels/CalendarViewModel'
 
 interface ContainerProps {
   sameMonth: boolean
@@ -39,37 +40,28 @@ const Container = styled.div<ContainerProps>`
   }
 `
 
-interface Props {
+type CalendarProps = {
+  viewModel: CalenderViewModel
   day: Date
-  nowDate: Date
-  setNowDate: React.Dispatch<React.SetStateAction<Date>>
-  clickedDate: Date | undefined
-  setClickedDate: React.Dispatch<React.SetStateAction<Date | undefined>>
 }
 
-const allDay = ({ day, nowDate, setNowDate, clickedDate, setClickedDate }: Props) => {
-  const nowTime = new Date()
-
-  const sameMonth = nowDate.getMonth() === day.getMonth()
-  const sameDay =
+export default observer(({ viewModel, day }: CalendarProps) => {
+  const nowTime: Date = new Date()
+  const sameMonth: boolean = viewModel.nowDate.getMonth() === day.getMonth()
+  const sameDay: boolean =
     nowTime.getFullYear() === day.getFullYear() &&
     nowTime.getMonth() === day.getMonth() &&
     nowTime.getDate() === day.getDate()
 
-  const clickDay: boolean = clickedDate
-    ? clickedDate.getFullYear() === day.getFullYear() &&
-      clickedDate.getMonth() === day.getMonth() &&
-      clickedDate.getDate() === day.getDate()
+  const clickDay: boolean = viewModel.clickedDate
+    ? viewModel.clickedDate.getFullYear() === day.getFullYear() &&
+      viewModel.clickedDate.getMonth() === day.getMonth() &&
+      viewModel.clickedDate.getDate() === day.getDate()
     : false
 
-  const clickDate = () => {
-    setClickedDate(day)
-  }
   return (
-    <Container onClick={() => clickDate()} sameMonth={sameMonth} sameDay={sameDay} clickDay={clickDay}>
+    <Container onClick={() => viewModel.setclickedDate(day)} sameMonth={sameMonth} sameDay={sameDay} clickDay={clickDay}>
       <p>{day.getDate()}</p>
     </Container>
   )
-}
-
-export default allDay
+})
