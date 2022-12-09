@@ -1,33 +1,27 @@
-import React from 'react'
 import './App.css'
 import CalendarService from './app/services/CalendarService'
 import CalendarMain from './components/Calendar/CalendarMain'
 import CalendarViewModel from './app/viewModels/CalendarViewModel'
+import Header from './components/Header'
+import Footer from './components/Footer'
 import styled from 'styled-components'
 
 const Wrap = styled.div`
   background-color: #fafbfc;
   overflow: hidden;
-`
-
-const Header = styled.div`
-  position: relative;
-  background-color: #fff;
-  z-index: 2000;
+  width: auto;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 `
 
 const Container = styled.div`
   display: flex;
   position: relative;
   justify-content: center;
-  align-item: center;
-  //padding: 20px 30px;
-  margin: 0 auto;
-`
-
-const Footer = styled.div`
-  background-color: #fff;
-  border-top: 1px solid #e4e8eb;
+  align-items: center;
+  height: auto;
+  padding: 10px 0;
 `
 
 function App() {
@@ -35,15 +29,11 @@ function App() {
 
   return (
     <Wrap>
-      <Header id='Header'>
-        <p>Header</p>
-      </Header>
+      <Header />
       <Container>
-        <CalendarMain viewModel={viewModel}/>
+        <CalendarMain viewModel={viewModel} />
       </Container>
-      <Footer>
-        <p>Footer</p>
-      </Footer>
+      <Footer/>
     </Wrap>
   )
 }
