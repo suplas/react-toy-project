@@ -4,13 +4,15 @@ import { BottomNavigation, BottomNavigationAction } from '@mui/material'
 import { Home, CalendarMonth, MoreHoriz, ChatBubble } from '@mui/icons-material'
 
 const Footer = styled.div`
-  position: fixed;
   z-index: 2000;
-  width: 100%;
+  width: auto;
   background-color: #fff;
-  padding: 10px 0;
   border-top: 1px solid #e2e2e2;
-  bottom: 0;
+  position: relative;
+`
+
+const Navigation = styled(BottomNavigation)`
+  width: auto;
 `
 
 const NavigationIcon = styled(BottomNavigationAction)`
@@ -20,7 +22,7 @@ const NavigationIcon = styled(BottomNavigationAction)`
 export default observer(() => {
   return (
     <Footer>
-      <BottomNavigation
+      <Navigation
         value={1}
         //   onChange={(event, newValue) => {
         //     setValue(newValue)
@@ -30,7 +32,7 @@ export default observer(() => {
         <NavigationIcon icon={<CalendarMonth />} />
         <NavigationIcon icon={<ChatBubble />} />
         <NavigationIcon icon={<MoreHoriz />} />
-      </BottomNavigation>
+      </Navigation>
     </Footer>
   )
 })

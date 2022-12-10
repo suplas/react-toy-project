@@ -5,14 +5,15 @@ import CalendarViewModel from './app/viewModels/CalendarViewModel'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import styled from 'styled-components'
+import Paper from '@mui/material/Paper'
 
-const Wrap = styled.div`
-  background-color: #fafbfc;
+const Wrap = styled(Paper)`
   overflow: hidden;
   width: auto;
-  height: 100%;
+  height: 100vh;
   display: flex;
   flex-direction: column;
+  background-color: #000;
 `
 
 const Container = styled.div`
@@ -21,20 +22,24 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   height: auto;
-  padding: 10px 0;
+  padding-top: 10px;
+  margin-bottom: auto;
+
 `
 
 function App() {
   let viewModel = new CalendarViewModel(CalendarService.instance)
 
   return (
-    <Wrap>
-      <Header />
-      <Container>
-        <CalendarMain viewModel={viewModel} />
-      </Container>
-      <Footer/>
-    </Wrap>
+    <>
+      <Wrap elevation={24}>
+        <Header />
+        <Container>
+          <CalendarMain viewModel={viewModel} />
+        </Container>
+        <Footer />
+      </Wrap>
+    </>
   )
 }
 

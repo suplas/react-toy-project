@@ -25,7 +25,7 @@ const Container = styled.div<ContainerProps>`
       sameDay
         ? css`
             color: #fff;
-            background-color: pink;
+            background-color: #83DCB7;
             border-radius: 3rem;
           `
         : css``}
@@ -33,7 +33,7 @@ const Container = styled.div<ContainerProps>`
       clickDay
         ? css`
             color: #fff;
-            background-color: pink;
+            background-color: #83DCB7;
             border-radius: 3rem;
           `
         : css``}

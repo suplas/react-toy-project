@@ -15,7 +15,33 @@ export default class CalenderViewModel extends BaseViewModel {
   }
 
   @action
-  setNowDate = (date: Date) => {
+  setclickedDate = (date: Date) => {
+    if (date === undefined || date === null) {
+      return
+    }
+    try {
+      this.clickedDate = date
+      this.monthList(this.nowDate)
+    } catch (e) {
+      console.error(e)
+    }
+  }
+
+  @action
+  changeYear = (change: number) => {
+    const date: Date = new Date(this.nowDate.getTime())
+    date.setFullYear(date.getFullYear() + change)
+    this.setNowDate(date)
+  }
+
+  @action
+  changeMonth = (change: number) => {
+    const date: Date = new Date(this.nowDate.getTime())
+    date.setMonth(date.getMonth() + change)
+    this.setNowDate(date)
+  }
+
+  private setNowDate = (date: Date) => {
     if (date === undefined || date === null) {
       return
     }
@@ -27,22 +53,7 @@ export default class CalenderViewModel extends BaseViewModel {
     }
   }
 
-  @action
-  setclickedDate = (date: Date) => {
-    if (date === undefined || date === null) {
-      return
-    }
-
-    try {
-      this.clickedDate = date
-      this.monthList(this.nowDate)
-    } catch (e) {
-      console.error(e)
-    }
-  }
-
-  @action
-  monthList = (nowDate: Date) => {
+  private monthList = (nowDate: Date) => {
     const nowYear = nowDate.getFullYear()
     const nowMonth = nowDate.getMonth()
 

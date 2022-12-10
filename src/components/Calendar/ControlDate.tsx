@@ -1,8 +1,11 @@
-import React from 'react'
 import styled from 'styled-components'
 import { Button } from '@mui/material'
 import { observer } from 'mobx-react'
 import CalenderViewModel from '../../app/viewModels/CalendarViewModel'
+import NavigateNextIcon from '@mui/icons-material/NavigateNext'
+import NavigatePrevtIcon from '@mui/icons-material/NavigateBefore'
+import SkipNextIcon from '@mui/icons-material/SkipNext'
+import SkipPrevIcon from '@mui/icons-material/SkipPrevious'
 
 const Container = styled.div`
   width: 100%;
@@ -12,10 +15,22 @@ const Container = styled.div`
   align-items: center;
 `
 
-const BtnBox = styled.div`
+const ControllBox = styled.div`
   border: 0;
   margin: 0;
   background-color: #fff;
+  width: auto;
+  margin: 0 auto;
+`
+
+const ControllButton = styled(Button)`
+  border: 0;
+  width: auto;
+`
+
+const ControllTitle = styled.div`
+  width: auto;
+  margin: 0 auto;
 `
 
 type CalendarProps = {
@@ -23,53 +38,43 @@ type CalendarProps = {
 }
 
 export default observer(({ viewModel }: CalendarProps) => {
-  const changeYear = (change: number) => {
-    const date: Date = new Date(viewModel.nowDate.getTime())
-    date.setFullYear(date.getFullYear() + change)
-    viewModel.setNowDate(date)
-  }
-
-  const changeMonth = (change: number) => {
-    const date: Date = new Date(viewModel.nowDate.getTime())
-    date.setMonth(date.getMonth() + change)
-    viewModel.setNowDate(date)
-  }
-
   return (
     <Container>
-      <BtnBox>
-        <Button
+      <ControllBox>
+        <ControllButton
           onClick={() => {
-            changeYear(-1)
+            viewModel.changeYear(-1)
           }}
         >
-          {'<<'}
-        </Button>
-        <Button
+          <SkipPrevIcon />
+        </ControllButton>
+        <ControllButton
           onClick={() => {
-            changeMonth(-1)
+            viewModel.changeMonth(-1)
           }}
         >
-          {'<'}
-        </Button>
-      </BtnBox>
-      <h1>{`${viewModel.nowDate.getMonth() + 1}. ${viewModel.nowDate.getFullYear()}`}</h1>
-      <BtnBox>
-        <Button
+          <NavigatePrevtIcon />
+        </ControllButton>
+      </ControllBox>
+      <ControllTitle>
+        <h1>{`${viewModel.nowDate.getMonth() + 1}. ${viewModel.nowDate.getFullYear()}`}</h1>
+      </ControllTitle>
+      <ControllBox>
+        <ControllButton
           onClick={() => {
-            changeMonth(+1)
+            viewModel.changeMonth(+1)
           }}
         >
-          {'>'}
-        </Button>
-        <Button
+          <NavigateNextIcon />
+        </ControllButton>
+        <ControllButton
           onClick={() => {
-            changeYear(+1)
+            viewModel.changeYear(+1)
           }}
         >
-          {'>>'}
-        </Button>
-      </BtnBox>
+          <SkipNextIcon />
+        </ControllButton>
+      </ControllBox>
     </Container>
   )
 })
