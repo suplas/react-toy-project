@@ -29,6 +29,7 @@
     <li>React - 18.2.0</li>
     <li>TypeScript - 4.9.3</li>
     <li>Styled Component - 5.3.6</li>
+    <li>Material UI - 5.10.16</li>
     <li>OS - macOS Ventura 13.0.1</li>
   </ul>
 
