@@ -1,0 +1,18 @@
+* {
+    margin: 0;
+    padding: 0;
+  }
+  
+  html, body {
+    height: 100%;
+    width: auto;
+    max-width: 1200px;
+    overflow: hidden;
+    margin: 0 auto;
+    background-color: #f9f9f9;
+  }
+  
+  #root {
+    width: auto;
+    height: 100%;
+  }

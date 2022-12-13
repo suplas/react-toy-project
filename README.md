@@ -9,9 +9,12 @@
 
 <h2>#Language & Library</h2>
   <ul>
-    <li>node.js</li>
-    <li>React.js</li>
+    <li>Node.js</li>
+    <li>React</li>
+    <li>TypeScript</li>
+    <li>Mobx-react</li>
     <li>Material UI</li>
+    <li>Styled Component</li>
   </ul>
 
 <h2>#DB</h2>
@@ -24,7 +27,11 @@
     <li>Node - 16.14.2</li>
     <li>npx - 8.5.0</li>
     <li>create-react-app - 5.0.1</li>
-    <li>react - 18.2.0</li>
+    <li>React - 18.2.0</li>
+    <li>TypeScript - 4.9.3</li>
+    <li>Mobx-react - 7.6.0</li>
+    <li>Styled Component - 5.3.6</li>
+    <li>Material UI - 5.10.16</li>
     <li>OS - macOS Ventura 13.0.1</li>
   </ul>
 
@@ -37,3 +44,7 @@
   <ul>
     <li>Restful</li>
   </ul>
+
+  <h2>#Note</h2>
+  <p>1. The calendar is being customized by referring to GitHub jdy0120's code</p>
+  <p>2. When using the calendar library, it is not easy to customize the design and functionality, so it is not used</p>

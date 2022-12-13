@@ -2,11 +2,11 @@
   "compilerOptions": {
     "target": "es5",
     "lib": [
+      "es6",
       "dom",
       "dom.iterable",
       "esnext"
     ],
-    "baseUrl": "./src",
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -19,9 +19,27 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "preserve",
+    "experimentalDecorators": true,
+    "useDefineForClassFields": true,
+    "incremental": true
   },
+  "typeRoots": [
+    "node_modules/@types",
+    "src/@type"
+  ],
+  "exclude": [
+    "node_modules",
+    "build",
+    "scripts",
+    "acceptance-tests",
+    "webpack",
+    "jest",
+    "src/setupTests.ts",
+    "./node_modules/**/*"
+  ],
   "include": [
-    "src"
-  ]
+    "./src/**/*",
+    "@type"
+, "src/pages"  ]
 }

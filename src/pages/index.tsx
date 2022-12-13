@@ -1,12 +1,13 @@
-import './App.css'
-import CalendarService from './app/services/CalendarService'
-import CalendarMain from './components/Calendar/CalendarMain'
-import CalendarViewModel from './app/viewModels/CalendarViewModel'
-import Header from './components/Header'
-import Footer from './components/Footer'
+import { NextPage } from 'next'
+import Link from 'next/link'
 import styled from 'styled-components'
 import Paper from '@mui/material/Paper'
-import { Component } from 'react'
+import CalendarService from '../app/services/CalendarService'
+import CalendarMain from '../components/Calendar/CalendarMain'
+import CalendarViewModel from '../app/viewModels/CalendarViewModel'
+import Header from '../components/Header'
+import Footer from '../components/Footer'
+
 
 const Wrap = styled(Paper)`
   overflow: hidden;
@@ -14,7 +15,6 @@ const Wrap = styled(Paper)`
   height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: #000;
 `
 
 const Container = styled.div`
@@ -27,19 +27,17 @@ const Container = styled.div`
   margin-bottom: auto;
 `
 
-class App extends Component {
-  render() {
-    let viewModel = new CalendarViewModel(CalendarService.instance)
-    return (
-      <Wrap elevation={24}>
+const Home: NextPage = () => {
+  let viewModel = new CalendarViewModel(CalendarService.instance)
+  return (
+    <Wrap elevation={24}>
         <Header />
         <Container>
           <CalendarMain viewModel={viewModel} />
         </Container>
         <Footer />
       </Wrap>
-    )
-  }
+  )
 }
 
-export default App
+export default Home
