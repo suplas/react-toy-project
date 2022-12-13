@@ -1,7 +1,12 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": ["es6", "dom", "dom.iterable", "esnext"],
+    "lib": [
+      "es6",
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -14,11 +19,15 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx",
+    "jsx": "preserve",
     "experimentalDecorators": true,
-    "useDefineForClassFields": true
+    "useDefineForClassFields": true,
+    "incremental": true
   },
-  "typeRoots": ["node_modules/@types", "src/@type"],
+  "typeRoots": [
+    "node_modules/@types",
+    "src/@type"
+  ],
   "exclude": [
     "node_modules",
     "build",
@@ -29,5 +38,8 @@
     "src/setupTests.ts",
     "./node_modules/**/*"
   ],
-  "include": ["./src/**/*", "@type"]
+  "include": [
+    "./src/**/*",
+    "@type"
+, "src/pages"  ]
 }
