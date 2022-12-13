@@ -6,6 +6,7 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 import styled from 'styled-components'
 import Paper from '@mui/material/Paper'
+import { Component } from 'react'
 
 const Wrap = styled(Paper)`
   overflow: hidden;
@@ -24,14 +25,12 @@ const Container = styled.div`
   height: auto;
   padding-top: 10px;
   margin-bottom: auto;
-
 `
 
-function App() {
-  let viewModel = new CalendarViewModel(CalendarService.instance)
-
-  return (
-    <>
+class App extends Component {
+  render() {
+    let viewModel = new CalendarViewModel(CalendarService.instance)
+    return (
       <Wrap elevation={24}>
         <Header />
         <Container>
@@ -39,8 +38,8 @@ function App() {
         </Container>
         <Footer />
       </Wrap>
-    </>
-  )
+    )
+  }
 }
 
 export default App

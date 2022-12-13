@@ -1,7 +1,8 @@
-import { observer } from 'mobx-react'
+import { observer, inject } from 'mobx-react'
 import styled from 'styled-components'
 import { BottomNavigation, BottomNavigationAction } from '@mui/material'
 import { Home, CalendarMonth, MoreHoriz, ChatBubble } from '@mui/icons-material'
+import BaseStore from '../app/stores/BaseStore'
 
 const Footer = styled.div`
   z-index: 2000;
@@ -16,23 +17,34 @@ const Navigation = styled(BottomNavigation)`
 `
 
 const NavigationIcon = styled(BottomNavigationAction)`
-    width: auto;
+  width: auto;
 `
 
-export default observer(() => {
-  return (
-    <Footer>
-      <Navigation
-        value={1}
-        //   onChange={(event, newValue) => {
-        //     setValue(newValue)
-        //   }}
-      >
-        <NavigationIcon icon={<Home />} />
-        <NavigationIcon icon={<CalendarMonth />} />
-        <NavigationIcon icon={<ChatBubble />} />
-        <NavigationIcon icon={<MoreHoriz />} />
-      </Navigation>
-    </Footer>
-  )
-})
+type BaseProps = {
+  store?: StoreType
+}
+
+type StoreType = {
+  base: BaseStore
+}
+
+export default inject('store')(
+  observer(({ store }: BaseProps) => {
+    const { selectNavigationNumber, SetSelectNavigationNumber } = store!.base
+    return (
+      <Footer>
+        <Navigation
+          value={selectNavigationNumber}
+          onChange={(event, newValue) => {
+            SetSelectNavigationNumber(newValue)
+          }}
+        >
+          <NavigationIcon icon={<Home />} />
+          <NavigationIcon icon={<CalendarMonth />} />
+          <NavigationIcon icon={<ChatBubble />} />
+          <NavigationIcon icon={<MoreHoriz />} />
+        </Navigation>
+      </Footer>
+    )
+  }),
+)

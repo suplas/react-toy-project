@@ -1,6 +1,7 @@
 import styled from 'styled-components'
-import { observer } from 'mobx-react'
+import { observer, inject } from 'mobx-react'
 import SearchIcon from '@mui/icons-material/Search'
+import BaseStore from '../app/stores/BaseStore'
 
 const Top = styled.div`
   position: relative;
@@ -28,19 +29,30 @@ const TopIconArea = styled.div`
   display: flex;
 `
 
-export default observer(() => {
-  return (
-    <Top>
-      <TitleArea>
-        <Title>달력</Title>
-        <TopIconArea>
-          <SearchIcon
-            sx={{
-              color: '#000',
-            }}
-          />
-        </TopIconArea>
-      </TitleArea>
-    </Top>
-  )
-})
+type BaseProps = {
+  store?: StoreType
+}
+
+type StoreType = {
+  base: BaseStore
+}
+
+export default inject('store')(
+  observer(({store}: BaseProps) => {
+    const {mainTitle} = store!.base
+    return (
+      <Top>
+        <TitleArea>
+          <Title>{mainTitle}</Title>
+          <TopIconArea>
+            <SearchIcon
+              sx={{
+                color: '#000',
+              }}
+            />
+          </TopIconArea>
+        </TitleArea>
+      </Top>
+    )
+  }),
+)

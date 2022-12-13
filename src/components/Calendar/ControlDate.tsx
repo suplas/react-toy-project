@@ -1,11 +1,12 @@
 import styled from 'styled-components'
 import { Button } from '@mui/material'
-import { observer } from 'mobx-react'
-import CalenderViewModel from '../../app/viewModels/CalendarViewModel'
+import { inject, observer } from 'mobx-react'
 import NavigateNextIcon from '@mui/icons-material/NavigateNext'
 import NavigatePrevtIcon from '@mui/icons-material/NavigateBefore'
 import SkipNextIcon from '@mui/icons-material/SkipNext'
 import SkipPrevIcon from '@mui/icons-material/SkipPrevious'
+import CalendarStore from '../../app/stores/CalendarStore'
+import CalenderViewModel from '../../app/viewModels/CalendarViewModel'
 
 const Container = styled.div`
   width: 100%;
@@ -33,48 +34,56 @@ const ControllTitle = styled.div`
   margin: 0 auto;
 `
 
-type CalendarProps = {
+type StoreProps = {
+  store?: StoreType
   viewModel: CalenderViewModel
 }
 
-export default observer(({ viewModel }: CalendarProps) => {
-  return (
-    <Container>
-      <ControllBox>
-        <ControllButton
-          onClick={() => {
-            viewModel.changeYear(-1)
-          }}
-        >
-          <SkipPrevIcon />
-        </ControllButton>
-        <ControllButton
-          onClick={() => {
-            viewModel.changeMonth(-1)
-          }}
-        >
-          <NavigatePrevtIcon />
-        </ControllButton>
-      </ControllBox>
-      <ControllTitle>
-        <h1>{`${viewModel.nowDate.getMonth() + 1}. ${viewModel.nowDate.getFullYear()}`}</h1>
-      </ControllTitle>
-      <ControllBox>
-        <ControllButton
-          onClick={() => {
-            viewModel.changeMonth(+1)
-          }}
-        >
-          <NavigateNextIcon />
-        </ControllButton>
-        <ControllButton
-          onClick={() => {
-            viewModel.changeYear(+1)
-          }}
-        >
-          <SkipNextIcon />
-        </ControllButton>
-      </ControllBox>
-    </Container>
-  )
-})
+type StoreType = {
+  calendar: CalendarStore
+}
+
+export default inject('store')(
+  observer(({ store, viewModel }: StoreProps) => {
+    const { changeYear, changeMonth, nowDate } = store!.calendar
+    return (
+      <Container>
+        <ControllBox>
+          <ControllButton
+            onClick={() => {
+              changeYear(-1)
+            }}
+          >
+            <SkipPrevIcon />
+          </ControllButton>
+          <ControllButton
+            onClick={() => {
+              changeMonth(-1)
+            }}
+          >
+            <NavigatePrevtIcon />
+          </ControllButton>
+        </ControllBox>
+        <ControllTitle>
+          <h1>{`${nowDate.getMonth() + 1}. ${nowDate.getFullYear()}`}</h1>
+        </ControllTitle>
+        <ControllBox>
+          <ControllButton
+            onClick={() => {
+              changeMonth(+1)
+            }}
+          >
+            <NavigateNextIcon />
+          </ControllButton>
+          <ControllButton
+            onClick={() => {
+              changeYear(+1)
+            }}
+          >
+            <SkipNextIcon />
+          </ControllButton>
+        </ControllBox>
+      </Container>
+    )
+  }),
+)

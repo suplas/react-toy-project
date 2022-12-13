@@ -1,8 +1,8 @@
-import { observer } from 'mobx-react'
+import { inject, observer } from 'mobx-react'
 import ControlDate from './ControlDate'
 import DateBox from './DateBox'
-import CalenderViewModel from '../../app/viewModels/CalendarViewModel'
 import styled from 'styled-components'
+import CalenderViewModel from '../../app/viewModels/CalendarViewModel'
 
 
 const Container = styled.div`
@@ -16,7 +16,7 @@ type CalendarProps = {
   viewModel: CalenderViewModel
 }
 
-export default observer(({ viewModel }: CalendarProps) => {
+export default observer(({viewModel}: CalendarProps) => {
   return (
     <Container>
       <ControlDate viewModel={viewModel} />

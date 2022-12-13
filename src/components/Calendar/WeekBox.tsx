@@ -1,4 +1,6 @@
+import { inject, observer } from 'mobx-react'
 import styled from 'styled-components'
+import CalendarStore from '../../app/stores/CalendarStore'
 
 const Container = styled.div`
   background-color: #fff;
@@ -8,16 +10,21 @@ const Container = styled.div`
   align-items: center;
 `
 
-interface Props {
+type StoreProps = {
+  store?: StoreType
   weekName: string
 }
 
-const WeekBox = ({ weekName }: Props) => {
-  return (
-    <Container>
-      <p>{weekName}</p>
-    </Container>
-  )
+type StoreType = {
+  calendar: CalendarStore
 }
 
-export default WeekBox
+export default inject('store')(
+  observer(({ store, weekName }: StoreProps) => {
+    return (
+      <Container>
+        <p>{weekName}</p>
+      </Container>
+    )
+  }),
+)

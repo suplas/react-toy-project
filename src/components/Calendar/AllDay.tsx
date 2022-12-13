@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components'
-import { observer } from 'mobx-react'
+import { inject, observer } from 'mobx-react'
 import CalenderViewModel from '../../app/viewModels/CalendarViewModel'
+import CalendarStore from '../../app/stores/CalendarStore'
 
 interface ContainerProps {
   sameMonth: boolean
@@ -25,7 +26,7 @@ const Container = styled.div<ContainerProps>`
       sameDay
         ? css`
             color: #fff;
-            background-color: #83DCB7;
+            background-color: #83dcb7;
             border-radius: 3rem;
           `
         : css``}
@@ -33,35 +34,43 @@ const Container = styled.div<ContainerProps>`
       clickDay
         ? css`
             color: #fff;
-            background-color: #83DCB7;
+            background-color: #83dcb7;
             border-radius: 3rem;
           `
         : css``}
   }
 `
 
-type CalendarProps = {
+type StoreProps = {
+  store?: StoreType
   viewModel: CalenderViewModel
   day: Date
 }
 
-export default observer(({ viewModel, day }: CalendarProps) => {
-  const nowTime: Date = new Date()
-  const sameMonth: boolean = viewModel.nowDate.getMonth() === day.getMonth()
-  const sameDay: boolean =
-    nowTime.getFullYear() === day.getFullYear() &&
-    nowTime.getMonth() === day.getMonth() &&
-    nowTime.getDate() === day.getDate()
+type StoreType = {
+  calendar: CalendarStore
+}
 
-  const clickDay: boolean = viewModel.clickedDate
-    ? viewModel.clickedDate.getFullYear() === day.getFullYear() &&
-      viewModel.clickedDate.getMonth() === day.getMonth() &&
-      viewModel.clickedDate.getDate() === day.getDate()
-    : false
+export default inject('store')(
+  observer(({ store, viewModel, day }: StoreProps) => {
+    const { nowDate, clickedDate, setclickedDate } = store!.calendar
+    const nowTime: Date = new Date()
+    const sameMonth: boolean = nowDate.getMonth() === day.getMonth()
+    const sameDay: boolean =
+      nowTime.getFullYear() === day.getFullYear() &&
+      nowTime.getMonth() === day.getMonth() &&
+      nowTime.getDate() === day.getDate()
 
-  return (
-    <Container onClick={() => viewModel.setclickedDate(day)} sameMonth={sameMonth} sameDay={sameDay} clickDay={clickDay}>
-      <p>{day.getDate()}</p>
-    </Container>
-  )
-})
+    const clickDay: boolean = clickedDate
+      ? clickedDate.getFullYear() === day.getFullYear() &&
+        clickedDate.getMonth() === day.getMonth() &&
+        clickedDate.getDate() === day.getDate()
+      : false
+
+    return (
+      <Container onClick={() => setclickedDate(day)} sameMonth={sameMonth} sameDay={sameDay} clickDay={clickDay}>
+        <p>{day.getDate()}</p>
+      </Container>
+    )
+  }),
+)
