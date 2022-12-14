@@ -32,8 +32,8 @@
   "scripts": {
     "dev": "next dev",
     "start": "next start",
-    "next build": "next build",
-    "test": "react-scripts test"
+    "build": "next build",
+    "test": "jest --watch"
   },
   "eslintConfig": {
     "extends": [

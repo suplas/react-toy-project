@@ -5,8 +5,8 @@ import NavigateNextIcon from '@mui/icons-material/NavigateNext'
 import NavigatePrevtIcon from '@mui/icons-material/NavigateBefore'
 import SkipNextIcon from '@mui/icons-material/SkipNext'
 import SkipPrevIcon from '@mui/icons-material/SkipPrevious'
-import CalendarStore from '../../app/stores/CalendarStore'
-import CalenderViewModel from '../../app/viewModels/CalendarViewModel'
+import CalendarStore from '../../stores/CalendarStore'
+import CalenderViewModel from '../../viewModels/CalendarViewModel'
 
 const Container = styled.div`
   width: 100%;
@@ -33,7 +33,6 @@ const ControllTitle = styled.div`
   width: auto;
   margin: 0 auto;
 `
-
 type StoreProps = {
   store?: StoreType
   viewModel: CalenderViewModel

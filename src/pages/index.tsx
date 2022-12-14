@@ -2,12 +2,12 @@ import { NextPage } from 'next'
 import Link from 'next/link'
 import styled from 'styled-components'
 import Paper from '@mui/material/Paper'
-import CalendarService from '../app/services/CalendarService'
-import CalendarMain from '../components/Calendar/CalendarMain'
-import CalendarViewModel from '../app/viewModels/CalendarViewModel'
+import CalendarService from '../services/CalendarService'
+import CalendarViewModel from '../viewModels/CalendarViewModel'
 import Header from '../components/Header'
+import CalendarMain from '../components/Calendar/CalendarMain'
+import CalendarContent from '../components/Calendar/Contents/CalendarContent'
 import Footer from '../components/Footer'
-
 
 const Wrap = styled(Paper)`
   overflow: hidden;
@@ -19,24 +19,27 @@ const Wrap = styled(Paper)`
 
 const Container = styled.div`
   display: flex;
+  flex-direction: column;
   position: relative;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  height: auto;
+  height: 100%;
   padding-top: 10px;
-  margin-bottom: auto;
+  flex-wrap: wrap;
+  
 `
 
 const Home: NextPage = () => {
   let viewModel = new CalendarViewModel(CalendarService.instance)
   return (
     <Wrap elevation={24}>
-        <Header />
-        <Container>
-          <CalendarMain viewModel={viewModel} />
-        </Container>
-        <Footer />
-      </Wrap>
+      <Header />
+      <Container>
+        <CalendarMain viewModel={viewModel} />
+        <CalendarContent viewModel={viewModel} />
+      </Container>
+      <Footer />
+    </Wrap>
   )
 }
 

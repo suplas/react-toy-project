@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components'
 import { inject, observer } from 'mobx-react'
-import CalenderViewModel from '../../app/viewModels/CalendarViewModel'
-import CalendarStore from '../../app/stores/CalendarStore'
+import CalenderViewModel from '../../viewModels/CalendarViewModel'
+import CalendarStore from '../../stores/CalendarStore'
 
 interface ContainerProps {
   sameMonth: boolean
@@ -21,7 +21,8 @@ const Container = styled.div<ContainerProps>`
     width: 20px;
     padding: 5px;
     text-align: center;
-    font-weight: ${({ sameMonth }) => (sameMonth ? `700` : `100`)};
+    opacity: ${({ sameMonth }) => (sameMonth ? `1` : `0.5`)};
+    font-weight: bold;
     ${({ sameDay }) =>
       sameDay
         ? css`
@@ -34,7 +35,7 @@ const Container = styled.div<ContainerProps>`
       clickDay
         ? css`
             color: #fff;
-            background-color: #83dcb7;
+            background-color: #158e5c;
             border-radius: 3rem;
           `
         : css``}

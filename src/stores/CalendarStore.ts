@@ -15,6 +15,8 @@ class CalendarStore {
       setclickedDate: action,
       changeYear: action,
       changeMonth: action,
+      dateFormat: action,
+      contentTitleDateFormat: action,
     })
     this.nowDate = new Date()
     this.clickedDate = new Date()
@@ -45,6 +47,43 @@ class CalendarStore {
     const date: Date = new Date(this.nowDate.getTime())
     date.setMonth(date.getMonth() + change)
     this.setNowDate(date)
+  }
+
+  contentTitleDateFormat = (date: Date = this.clickedDate) => {
+    const result: string =  this.dateFormat(date, 'w')+', '+this.dateFormat(date, 'm')+'월 '+
+    this.dateFormat(date, 'd')+'일, '+this.dateFormat(date, 'y')
+
+    return result
+  }
+
+  dateFormat = (date: Date, type: string = 'ymd') => {
+    const year = date.getFullYear()
+    const month = (date.getMonth() +1)
+    const day = (date.getDate())
+    const hour = date.getHours()
+    const minute = date.getMinutes()
+    const second = date.getSeconds()
+    const week = this.weeks[(date.getDay())]+'요일';
+
+    const ymd = year+'년'+month+'월'+day+'일'
+    const ymdhis = year+'년'+month+'월'+day+'일 '+hour+'시'+minute+'분'+second+'초'
+
+    let result;
+
+    switch(type){
+      case 'ymd': result = ymd; break;
+      case 'ymdhis': result = ymdhis; break;
+      case 'y': result = year; break;
+      case 'm': result = month; break;
+      case 'd': result = day; break;
+      case 'h': result = hour; break;
+      case 'i': result = minute; break;
+      case 's': result = second; break;
+      case 'w' : result = week; break;
+      default : result = ymd; break;
+    }
+    
+    return result
   }
 
   private setNowDate = (date: Date) => {

@@ -2,14 +2,16 @@ import { inject, observer } from 'mobx-react'
 import ControlDate from './ControlDate'
 import DateBox from './DateBox'
 import styled from 'styled-components'
-import CalenderViewModel from '../../app/viewModels/CalendarViewModel'
+import CalenderViewModel from '../../viewModels/CalendarViewModel'
 
 
 const Container = styled.div`
   width: 100%;
-  height: 500px;
+  height: auto;
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
+  flex-basis: 45%;
 `
 
 type CalendarProps = {

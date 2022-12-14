@@ -2,14 +2,14 @@ import { observer, inject } from 'mobx-react'
 import styled from 'styled-components'
 import { BottomNavigation, BottomNavigationAction } from '@mui/material'
 import { Home, CalendarMonth, MoreHoriz, ChatBubble } from '@mui/icons-material'
-import BaseStore from '../app/stores/BaseStore'
+import BaseStore from '../stores/BaseStore'
 
 const Footer = styled.div`
   z-index: 2000;
-  width: auto;
-  background-color: #fff;
-  border-top: 1px solid #e2e2e2;
-  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  position: fixed;
+  bottom: 0;
 `
 
 const Navigation = styled(BottomNavigation)`

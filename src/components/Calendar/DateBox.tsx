@@ -3,8 +3,8 @@ import WeekBox from './WeekBox'
 import AllDay from './AllDay'
 import Box from '@mui/material/Box'
 import { inject, observer } from 'mobx-react'
-import CalenderViewModel from '../../app/viewModels/CalendarViewModel'
-import CalendarStore from '../../app/stores/CalendarStore'
+import CalenderViewModel from '../../viewModels/CalendarViewModel'
+import CalendarStore from '../../stores/CalendarStore'
 
 type StoreProps = {
   store?: StoreType

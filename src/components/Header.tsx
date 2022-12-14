@@ -1,13 +1,12 @@
 import styled from 'styled-components'
 import { observer, inject } from 'mobx-react'
 import SearchIcon from '@mui/icons-material/Search'
-import BaseStore from '../app/stores/BaseStore'
+import BaseStore from '../stores/BaseStore'
 
 const Top = styled.div`
   position: relative;
   z-index: 2000;
   width: auto;
-  border-bottom: 1px solid #e2e2e2;
 `
 
 const TitleArea = styled.div`
