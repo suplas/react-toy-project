@@ -9,6 +9,16 @@ interface ContainerProps {
   clickDay: boolean
 }
 
+type StoreProps = {
+  store?: StoreType
+  viewModel: CalenderViewModel
+  day: Date
+}
+
+type StoreType = {
+  calendar: CalendarStore
+}
+
 const Container = styled.div<ContainerProps>`
   border: 0;
   display: flex;
@@ -41,17 +51,6 @@ const Container = styled.div<ContainerProps>`
         : css``}
   }
 `
-
-type StoreProps = {
-  store?: StoreType
-  viewModel: CalenderViewModel
-  day: Date
-}
-
-type StoreType = {
-  calendar: CalendarStore
-}
-
 export default inject('store')(
   observer(({ store, viewModel, day }: StoreProps) => {
     const { nowDate, clickedDate, setclickedDate } = store!.calendar
@@ -68,8 +67,13 @@ export default inject('store')(
         clickedDate.getDate() === day.getDate()
       : false
 
+    function onClickDays(day: Date) {
+      setclickedDate(day)
+      viewModel.fetchContentList(day)
+    }
+
     return (
-      <Container onClick={() => setclickedDate(day)} sameMonth={sameMonth} sameDay={sameDay} clickDay={clickDay}>
+      <Container onClick={() => onClickDays(day)} sameMonth={sameMonth} sameDay={sameDay} clickDay={clickDay}>
         <p>{day.getDate()}</p>
       </Container>
     )
