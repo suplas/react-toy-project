@@ -1,6 +1,6 @@
 import { inject, observer } from 'mobx-react'
 import styled from 'styled-components'
-import CalendarStore from '../../app/stores/CalendarStore'
+import CalendarStore from '../../stores/CalendarStore'
 
 const Container = styled.div`
   background-color: #fff;

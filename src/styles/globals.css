@@ -1,6 +1,7 @@
 * {
     margin: 0;
     padding: 0;
+    font-family: "Nanum Gothic";
   }
   
   html, body {
@@ -10,6 +11,7 @@
     overflow: hidden;
     margin: 0 auto;
     background-color: #f9f9f9;
+    font-size: 16px;
   }
   
   #root {

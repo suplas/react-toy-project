@@ -1,12 +1,22 @@
 import styled, { css } from 'styled-components'
 import { inject, observer } from 'mobx-react'
-import CalenderViewModel from '../../app/viewModels/CalendarViewModel'
-import CalendarStore from '../../app/stores/CalendarStore'
+import CalenderViewModel from '../../viewModels/CalendarViewModel'
+import CalendarStore from '../../stores/CalendarStore'
 
 interface ContainerProps {
   sameMonth: boolean
   sameDay: boolean
   clickDay: boolean
+}
+
+type StoreProps = {
+  store?: StoreType
+  viewModel: CalenderViewModel
+  day: Date
+}
+
+type StoreType = {
+  calendar: CalendarStore
 }
 
 const Container = styled.div<ContainerProps>`
@@ -21,7 +31,8 @@ const Container = styled.div<ContainerProps>`
     width: 20px;
     padding: 5px;
     text-align: center;
-    font-weight: ${({ sameMonth }) => (sameMonth ? `700` : `100`)};
+    opacity: ${({ sameMonth }) => (sameMonth ? `1` : `0.5`)};
+    font-weight: bold;
     ${({ sameDay }) =>
       sameDay
         ? css`
@@ -34,23 +45,12 @@ const Container = styled.div<ContainerProps>`
       clickDay
         ? css`
             color: #fff;
-            background-color: #83dcb7;
+            background-color: #158e5c;
             border-radius: 3rem;
           `
         : css``}
   }
 `
-
-type StoreProps = {
-  store?: StoreType
-  viewModel: CalenderViewModel
-  day: Date
-}
-
-type StoreType = {
-  calendar: CalendarStore
-}
-
 export default inject('store')(
   observer(({ store, viewModel, day }: StoreProps) => {
     const { nowDate, clickedDate, setclickedDate } = store!.calendar
@@ -67,8 +67,13 @@ export default inject('store')(
         clickedDate.getDate() === day.getDate()
       : false
 
+    function onClickDays(day: Date) {
+      setclickedDate(day)
+      viewModel.fetchContentList(day)
+    }
+
     return (
-      <Container onClick={() => setclickedDate(day)} sameMonth={sameMonth} sameDay={sameDay} clickDay={clickDay}>
+      <Container onClick={() => onClickDays(day)} sameMonth={sameMonth} sameDay={sameDay} clickDay={clickDay}>
         <p>{day.getDate()}</p>
       </Container>
     )
