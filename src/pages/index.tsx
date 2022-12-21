@@ -13,12 +13,12 @@ const Wrap = styled(Paper)`
   overflow: hidden;
   width: auto;
   height: 100vh;
-  display: flex;
+  display: block;
   flex-direction: column;
 `
 
 const Container = styled.div`
-  display: flex;
+  display: block;
   flex-direction: column;
   position: relative;
   justify-content: space-between;
@@ -26,7 +26,6 @@ const Container = styled.div`
   height: 100%;
   padding-top: 10px;
   flex-wrap: wrap;
-  
 `
 
 const Home: NextPage = () => {
