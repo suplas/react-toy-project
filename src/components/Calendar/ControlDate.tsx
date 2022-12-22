@@ -27,11 +27,14 @@ const ControllBox = styled.div`
 const ControllButton = styled(Button)`
   border: 0;
   width: auto;
+  min-width: 30px;
 `
 
 const ControllTitle = styled.div`
   width: auto;
   margin: 0 auto;
+  font-size: 1.5rem;
+  font-weight: bold;
 `
 type StoreProps = {
   store?: StoreType
@@ -64,7 +67,8 @@ export default inject('store')(
           </ControllButton>
         </ControllBox>
         <ControllTitle>
-          <h1>{`${nowDate.getMonth() + 1}. ${nowDate.getFullYear()}`}</h1>
+          {/* <h1>{`${nowDate.getMonth() + 1}. ${nowDate.getFullYear()}`}</h1> */}
+          {`${nowDate.getMonth() + 1}. ${nowDate.getFullYear()}`}
         </ControllTitle>
         <ControllBox>
           <ControllButton
