@@ -10,6 +10,7 @@
 <h2>#Language & Library</h2>
   <ul>
     <li>Node.js</li>
+    <li>Next</li>
     <li>React</li>
     <li>TypeScript</li>
     <li>Mobx-react</li>
@@ -27,6 +28,7 @@
     <li>Node - 16.14.2</li>
     <li>npx - 8.5.0</li>
     <li>create-react-app - 5.0.1</li>
+    <li>Next - 13.0.6</li>
     <li>React - 18.2.0</li>
     <li>TypeScript - 4.9.3</li>
     <li>Mobx-react - 7.6.0</li>
