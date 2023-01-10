@@ -1,5 +1,5 @@
 <h1>#Project Name</h1>
-<p>Unknown</p>
+<p>Project Name has not been decided yet</p>
 
 <h2>#Purpose</h2>
 <p> 1. in order not to forget</p>
