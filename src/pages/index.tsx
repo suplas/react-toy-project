@@ -29,7 +29,7 @@ const Container = styled.div`
 `
 
 const Home: NextPage = () => {
-  let viewModel = new CalendarViewModel(CalendarService.instance)
+  const viewModel = new CalendarViewModel(CalendarService.instance)
   return (
     <Wrap elevation={24}>
       <Header />

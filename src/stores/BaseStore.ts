@@ -14,6 +14,7 @@ class BaseStore {
       pageTitle: observable,
       SetNavigationChange: action,
       PageChange: action,
+      PageBack: action,
     })
     this.selectNavigationNumber = 1
     this.mainTitle = '달력'
@@ -23,6 +24,10 @@ class BaseStore {
 
   // MARK: footer menu selet change
   SetNavigationChange = (changNumber: number) => {
+    if (this.selectNavigationNumber === changNumber) {
+      return
+    }
+
     this.selectNavigationNumber = changNumber
     this.MainTitle(changNumber)
 
@@ -43,12 +48,28 @@ class BaseStore {
   }
 
   // MARK page cahnge router
-  PageChange = (changePage: string = '/', pageTitle?: string) => {
-    router.push(changePage)
+  PageChange = (changePage: string = '/', pageTitle?: string, props?: any, pageName: string = '') => {
+    if (pageName === '' || pageName === undefined) {
+      pageName = changePage
+    }
+  
+    router.push(
+      {
+        pathname: changePage,
+        query: JSON.stringify(props),
+      },
+      `${pageName}`,
+    )
     if (pageTitle) {
       this.pageTitle = pageTitle
     }
   }
+
+  // MARK page back router
+  PageBack = () => {
+    router.back()
+  }
+
   // MARK: header main title change
   private MainTitle = (changeTitleNumber: number) => {
     this.mainTitle = this.titles[changeTitleNumber]

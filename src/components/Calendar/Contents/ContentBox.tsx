@@ -58,7 +58,7 @@ export default inject('store')(
           <Container
             key={item.seq}
             onClick={() => {
-              PageChange(`/calendar/content`, '자세히 보기')
+              PageChange(`/calendar/content`,'자세히 보기')
             }}
           >
             <WriteHour>{dateFormat(item.createHour, 'his')}</WriteHour>

@@ -1,9 +1,8 @@
 import { NextPage } from 'next'
 import styled from 'styled-components'
 import Paper from '@mui/material/Paper'
-import CalendarViewModel from '../../viewModels/CalendarViewModel'
-import CalendarService from '../../services/CalendarService'
-import { SubHeader } from '../../components/Header'
+import { SubHeader as Header } from '../../components/Header'
+import ContentDetail from '../../components/Calendar/Contents/ContentDetail'
 import Footer from '../../components/Footer'
 
 const Wrap = styled(Paper)`
@@ -26,11 +25,17 @@ const Container = styled.div`
 `
 
 const Calendar: NextPage = () => {
-  let viewModel = new CalendarViewModel(CalendarService.instance)
+  const item = {
+    seq: 1,
+    title: '제목 1',
+    createHour: new Date('2023.1.3 8:30'),
+    content: '본문내용노출본문내용노출본문내용노출본문내용노출본문내용노출본문내용노출본문내용노출\n본문내용노출본문내용노출',
+  }
   return (
     <Wrap>
       <Container>
-        <SubHeader />
+        <Header />
+        <ContentDetail item={item} />
         <Footer />
       </Container>
     </Wrap>

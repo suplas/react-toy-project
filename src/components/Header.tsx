@@ -73,11 +73,11 @@ export default inject('store')(
 // MARK: header of child page with parent
 export const SubHeader = inject('store')(
   observer(({ store }: BaseProps) => {
-    const { pageTitle } = store!.base
+    const { pageTitle, PageBack } = store!.base
     return (
       <Top>
         <TitleArea>
-          <BackButton />
+          <BackButton onClick={()=>{PageBack()}}/>
           <SubTitle>{pageTitle}</SubTitle>
         </TitleArea>
       </Top>
