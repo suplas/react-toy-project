@@ -5,7 +5,7 @@ import BaseStore from '../../../stores/BaseStore'
 
 type StoreProps = {
   store?: StoreType
-  item: Array<T>
+  item: String
 }
 
 type StoreType = {
@@ -49,15 +49,15 @@ const Content = styled.div`
 
 export default inject('store')(
   observer(({ store, item }: StoreProps) => {
-    const { dateFormat } = store?.calendar
-
+    const { dateFormat } = store!.calendar
+    const data = JSON.parse(item as string);
     return (
       <Container>
         <Title>
-          <Subject>{item.title}</Subject>
-          <WriteHour>{dateFormat(item.createHour, 'his')}</WriteHour>
+          <Subject>{data.title}</Subject>
+          <WriteHour>{dateFormat(data.createHour, 'his')}</WriteHour>
         </Title>
-        <Content>{item.content}</Content>
+        <Content>{data.content}</Content>
       </Container>
     )
   }),

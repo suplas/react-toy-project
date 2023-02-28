@@ -31,11 +31,12 @@ const Calendar: NextPage = () => {
     createHour: new Date('2023.1.3 8:30'),
     content: '본문내용노출본문내용노출본문내용노출본문내용노출본문내용노출본문내용노출본문내용노출\n본문내용노출본문내용노출',
   }
+  
   return (
     <Wrap>
       <Container>
         <Header />
-        <ContentDetail item={item} />
+        <ContentDetail item={JSON.parse(JSON.stringify(item))} />
         <Footer />
       </Container>
     </Wrap>
