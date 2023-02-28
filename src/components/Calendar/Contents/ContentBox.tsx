@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import CalenderViewModel from '../../../viewModels/CalendarViewModel'
 import CalendarStore from '../../../stores/CalendarStore'
 import { useEffect } from 'react'
+import BaseStore from '../../../stores/BaseStore'
 
 const Container = styled.div`
   width: auto;
@@ -40,11 +41,13 @@ type StoreProps = {
 
 type StoreType = {
   calendar: CalendarStore
+  base: BaseStore
 }
 
 export default inject('store')(
   observer(({ store, viewModel }: StoreProps) => {
-    const { dateFormat } = store?.calendar
+    const { dateFormat } = store!.calendar
+    const { PageChange } = store!.base
     const { contentItems } = viewModel
     useEffect(() => {
       viewModel.fetchContentList()
@@ -52,7 +55,12 @@ export default inject('store')(
     return (
       <>
         {contentItems?.map(item => (
-          <Container key={item.seq}>
+          <Container
+            key={item.seq}
+            onClick={() => {
+              PageChange(`/calendar/content`,'자세히 보기')
+            }}
+          >
             <WriteHour>{dateFormat(item.createHour, 'his')}</WriteHour>
             <Title>{item.title}</Title>
             <Content>{item.content}</Content>

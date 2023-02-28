@@ -1,7 +1,16 @@
 import styled from 'styled-components'
 import { observer, inject } from 'mobx-react'
 import SearchIcon from '@mui/icons-material/Search'
+import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import BaseStore from '../stores/BaseStore'
+
+type BaseProps = {
+  store?: StoreType
+}
+
+type StoreType = {
+  base: BaseStore
+}
 
 const Top = styled.div`
   position: relative;
@@ -28,17 +37,22 @@ const TopIconArea = styled.div`
   display: flex;
 `
 
-type BaseProps = {
-  store?: StoreType
-}
+const BackButton = styled(ArrowBackIcon)`
+  padding: 0 0.5rem;
+  width: auto;
+  min-width: 30px;
+`
 
-type StoreType = {
-  base: BaseStore
-}
+const SubTitle = styled.div`
+  color: #000;
+  font-size: 1rem;
+  font-weight: bold;
+`
 
+// MARK: header of parent
 export default inject('store')(
-  observer(({store}: BaseProps) => {
-    const {mainTitle} = store!.base
+  observer(({ store }: BaseProps) => {
+    const { mainTitle } = store!.base
     return (
       <Top>
         <TitleArea>
@@ -50,6 +64,21 @@ export default inject('store')(
               }}
             />
           </TopIconArea>
+        </TitleArea>
+      </Top>
+    )
+  }),
+)
+
+// MARK: header of child page with parent
+export const SubHeader = inject('store')(
+  observer(({ store }: BaseProps) => {
+    const { pageTitle, PageBack } = store!.base
+    return (
+      <Top>
+        <TitleArea>
+          <BackButton onClick={()=>{PageBack()}}/>
+          <SubTitle>{pageTitle}</SubTitle>
         </TitleArea>
       </Top>
     )

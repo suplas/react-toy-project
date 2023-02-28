@@ -30,13 +30,13 @@ type StoreType = {
 
 export default inject('store')(
   observer(({ store }: BaseProps) => {
-    const { selectNavigationNumber, SetSelectNavigationNumber } = store!.base
+    const { selectNavigationNumber, SetNavigationChange } = store!.base
     return (
       <Footer>
         <Navigation
           value={selectNavigationNumber}
           onChange={(event, newValue) => {
-            SetSelectNavigationNumber(newValue)
+            SetNavigationChange(newValue)
           }}
         >
           <NavigationIcon icon={<Home />} />
